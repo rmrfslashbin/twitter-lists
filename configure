@@ -8,50 +8,53 @@ pp = pprint.PrettyPrinter(indent=4)
 config = Settings()
 settings = config.load()
 
-print("Consumer API keys")
-consumerkey = input (f"Consumer key [{settings.get('consumer').get('key')}]: ")
-if consumerkey.strip() == "":
-    consumerkey = settings.get('consumer').get('key')
-settings["consumer"]["key"] = consumerkey
-
-consumerSecret = input(f"Consumer secret [{settings.get('consumer').get('secret')}]: ")
-if consumerSecret.strip() == "":
-    consumerSecret = settings.get('consumer').get('secret')
-settings["consumer"]["secret"] = consumerSecret
-
-print("")
-
-print("Access Token & Access Token Secret")
-accessToken = input(f"Access token [{settings.get('access').get('token')}]: ")
-if accessToken.strip() == "":
-    accessToken = settings.get('access').get('token')
-settings["access"]["token"] = accessToken
-
-accessSecret = input(f"Access secret [{settings.get('access').get('secret')}]: ")
-if accessSecret.strip() == "":
-    accessSecret = settings.get('access').get('secret')
-settings["access"]["secret"] = accessSecret
-print("")
-
-print("Account Owner")
-username = input(f"Username [{settings.get('owner').get('accountName')}]: ")
-if username.strip() == "":
-    username = settings.get('owner').get('accountName')
-settings["owner"]["accountName"] = username
-
-userid = input(f"User ID [{settings.get('owner').get('id')}]: ")
-if userid.strip() == "":
-    userid = settings.get('owner').get('id')
-settings["owner"]["id"] = userid
-print("")
-
-pp.pprint(settings)
-commit = input("Commit settings? [y|n]: ")
 try:
-    if commit.lower()[0] == "y":
-        config.save(settings)
-        print("Settings saved.")
-    else:
+    print("Consumer API keys")
+    consumerkey = input (f"Consumer key [{settings.get('consumer').get('key')}]: ")
+    if consumerkey.strip() == "":
+        consumerkey = settings.get('consumer').get('key')
+    settings["consumer"]["key"] = consumerkey
+
+    consumerSecret = input(f"Consumer secret [{settings.get('consumer').get('secret')}]: ")
+    if consumerSecret.strip() == "":
+        consumerSecret = settings.get('consumer').get('secret')
+    settings["consumer"]["secret"] = consumerSecret
+
+    print("")
+
+    print("Access Token & Access Token Secret")
+    accessToken = input(f"Access token [{settings.get('access').get('token')}]: ")
+    if accessToken.strip() == "":
+        accessToken = settings.get('access').get('token')
+    settings["access"]["token"] = accessToken
+
+    accessSecret = input(f"Access secret [{settings.get('access').get('secret')}]: ")
+    if accessSecret.strip() == "":
+        accessSecret = settings.get('access').get('secret')
+    settings["access"]["secret"] = accessSecret
+    print("")
+
+    print("Account Owner")
+    username = input(f"Username [{settings.get('owner').get('accountName')}]: ")
+    if username.strip() == "":
+        username = settings.get('owner').get('accountName')
+    settings["owner"]["accountName"] = username
+
+    userid = input(f"User ID [{settings.get('owner').get('id')}]: ")
+    if userid.strip() == "":
+        userid = settings.get('owner').get('id')
+    settings["owner"]["id"] = userid
+    print("")
+
+    pp.pprint(settings)
+    commit = input("Commit settings? [y|n]: ")
+    try:
+        if commit.lower()[0] == "y":
+            config.save(settings)
+            print("Settings saved.")
+        else:
+            print("Aborted. Settings not saved.")
+    except IndexError:
         print("Aborted. Settings not saved.")
-except IndexError:
-    print("Aborted. Settings not saved.")
+except KeyboardInterrupt:
+    print("\nUser aborted config.")

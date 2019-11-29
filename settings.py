@@ -2,6 +2,20 @@ import os
 from pathlib import Path
 import json
 
+settingsDict = {
+    "consumer": {
+        "key": None,
+        "secret": None
+    },
+    "access": {
+        "token": None,
+        "secret": None
+    },
+    "owner": {
+        "accountName": None,
+        "id": None
+    }
+}
 
 class Settings:
     def __init__(self, cfgFile="./settings.json"):
@@ -11,23 +25,26 @@ class Settings:
             self.path = Path(cfgFile)
         except BaseException:
             raise
+        except:
+            raise
 
     def create(self):
         self.path.touch()
-        return (True)
+        return True
 
     def load(self):
         if not self.path.resolve().exists():
-            raise SystemExit
+            self.create()
+            return settingsDict
         settingsSource = self.path.resolve()
 
         with settingsSource.open() as f:
             try:
                 self.settings = json.loads(f.read())
             except json.decoder.JSONDecodeError:
-                self.settings = {}
+                self.settings = settingsDict
 
-        return(self.settings)
+        return self.settings
 
     def save(self, settings):
         self.path.resolve().exists()
@@ -43,4 +60,4 @@ class Settings:
                     separators=(',', ': ')
                 )
             )
-        return (True)
+        return True
