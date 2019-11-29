@@ -7,7 +7,7 @@ Twitter API consumer and access tokens are required. Go to https://developer.twi
 ### Username and User ID
 Finding your Twitter @username is easy. The User ID, not as obvious. Log into Twitter. Go to Settings And Privacy ==> Account ==> Your Twitter data ==> Account... Then under the "Username" field, find you User ID.
 ### Settings.json
-With these three data points in hand, set up the the app by running ```./configure``` or ```cp settings.json.DIST settings.json``` and fill in the values manually.
+With these data points collected, set up the the app by running ```./configure``` or ```cp settings.json.DIST settings.json``` and fill in the values manually.
 
 ## General Use
 ### Data
