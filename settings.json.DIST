@@ -1,0 +1,15 @@
+{
+  "consumer": {
+    "key": "",
+    "secret": ""
+   },
+   "access": {
+    "token": "",
+    "secret": ""
+   },
+   "owner": {
+    "accountName": "",
+    "id": ""
+   }
+}
+  
