@@ -7,6 +7,10 @@ from utils import jsonPrint
 j = JSON()
 data = j.load()
 
+if not data.get("lists"):
+    print("No lists in local data store. Did you run ./fetchData?")
+    raise SystemExit
+
 print(f"{'list ID':20s} {'list owner':15s} list name")
 for list in data["lists"]:
     listObj = data["lists"][list]
