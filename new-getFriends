@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+
+from twitterUtils import TwitterUtils, Fetch
+import json
+#from db import DBFunctions
+
+
+#t = TwitterUtils()
+f = Fetch()
+
+#raise SystemExit
+
+print("Getting friends/follows")
+print(f.getFriends())
